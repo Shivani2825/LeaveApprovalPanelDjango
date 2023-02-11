@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+* {
+  box-sizing: border-box;
+}
+
+input[type=text], select, textarea {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  resize: vertical;
+}
+
+label {
+  padding: 12px 12px 12px 0;
+  display: inline-block;
+}
+
+input[type=submit] {
+  background-color: #04AA6D;
+  color: white;
+  padding: 12px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  float: right;
+}
+
+input[type=submit]:hover {
+  background-color: #45a049;
+}
+
+.container {
+  border-radius: 5px;
+  background-color: #f2f2f2;
+  padding: 20px;
+}
+
+.col-25 {
+  float: left;
+  width: 25%;
+  margin-top: 6px;
+}
+
+.col-75 {
+  float: left;
+  width: 75%;
+  margin-top: 6px;
+}
+button{
+    border-radius:5px;
+}
+button>a{
+    color:white;
+    text-decoration:none;
+
+}
+
+/* Clear floats after the columns */
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+/* Responsive layout - when the screen is less than 600px wide, make the two columns stack on top of each other instead of next to each other */
+@media screen and (max-width: 600px) {
+  .col-25, .col-75, input[type=submit] {
+    width: 100%;
+    margin-top: 0;
+  }
+}
+</style>
+</head>
+<body>
+
+<h2 style="text-align:center">Registration Form</h2>
+
+<div class="container">
+  <form action="/register/" method="POST">
+    {% csrf_token %}
+  <div class="row">
+    <div class="col-25">
+      <label for="fname">First Name</label>
+    </div>
+    <div class="col-75">
+      <input type="text" id="fname" name="firstname" placeholder="Enter Your First name..">
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-25">
+      <label for="lname">Last Name</label>
+    </div>
+    <div class="col-75">
+      <input type="text" id="lname" name="lastname" placeholder="Enter Your Last name..">
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-25">
+      <label for="lname">Email</label>
+    </div>
+    <div class="col-75">
+      <input type="text" id="email" name="email" placeholder="Enter Your Email..">
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-25">
+      <label for="lname">Password</label>
+    </div>
+    <div class="col-75">
+      <input type="password" id="password" name="password" placeholder="Enter Your Password">
+    </div>
+  </div>
+  
+  <br>
+  <div class="row">
+    <input type="submit" value="Register">
+  </div>
+  <div class="row">
+    <h3>Already Have Account?</h3>
+  <button style="  background-color: #04AA6D;color:white;border:none;width:100px;height:40px;font-size:20px;"><a href="/userlogin/">Login</a></button>
+  </div>
+  </form>
+</div>
+<script>
+  {% if messages %}
+  {% for message in messages %}
+  window.alert("{{message}}")
+  {% endfor %}
+  {% endif %}
+</script>
+
+</body>
+</html>
+
+

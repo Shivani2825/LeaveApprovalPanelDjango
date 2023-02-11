@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<style>
+input[type=text], select {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+input[type=submit] {
+  width: 100%;
+  background-color: #4CAF50;
+  color: white;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+input[type=submit]:hover {
+  background-color: #45a049;
+}
+
+div {
+  border-radius: 5px;
+  background-color: #f2f2f2;
+  padding: 20px;
+}
+</style>
+<body>
+
+<h2 style="text-align:center">Email From {{data.name}}</h2>
+
+<div>
+  <form action="/actiontaken/" method="POST">
+    {% csrf_token %}
+   
+    <label for="Name">Name</label>
+    <input type="text" name="name" value="{{data.name}}" readonly>
+
+    <label for="mail">To</label>
+    <input type="text" name="mail" value="{{data.to}}" readonly>
+
+    <label for="subject">Subject</label>
+    <input type="text" name="subject" value="{{data.subject}}" readonly>
+    
+    <label for="body">Body</label>
+    <textarea rows="10" cols="200" name="body" readonly>{{data.body}}</textarea>
+
+    <label for="Response">Response</label>
+    <select name="response">
+        <option value="Approved">Approved</option>
+        <option value="Disapproved">Disapproved</option>
+    </select>
+    
+    <input type="submit" value="Submit">
+  </form>
+</div>
+<script>
+  {% if messages %}
+  {% for message in messages %}
+  window.alert("{{message}}")
+  {% endfor %}
+  {% endif %}
+</script>
+</body>
+</html>
+
+
